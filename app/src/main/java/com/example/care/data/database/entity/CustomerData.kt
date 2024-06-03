@@ -5,9 +5,8 @@ import androidx.room.PrimaryKey
 
 @Entity
 data class CustomerData(
-    @PrimaryKey val cid: Int,
     val name: String,
-    val age: String,
+    val age: Int,
     val dob: String,
     val address: String
 )

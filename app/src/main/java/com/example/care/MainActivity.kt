@@ -25,7 +25,7 @@ class MainActivity : ComponentActivity() {
             CareTheme {
                 Scaffold(modifier = Modifier.fillMaxSize()) { innerPadding ->
                     CareApp(
-                         //careViewModel = viewModel,
+                         careViewModel = viewModel,
                         //modifier = Modifier.padding(innerPadding)
                     )
                 }
@@ -46,6 +46,6 @@ fun Greeting(name: String, modifier: Modifier = Modifier) {
 @Composable
 fun GreetingPreview() {
     CareTheme {
-        CareApp()
+        //CareApp()
     }
 }

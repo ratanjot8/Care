@@ -5,6 +5,7 @@ import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
+import androidx.compose.material3.Button
 import androidx.compose.material3.DatePicker
 import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.runtime.Composable
@@ -17,11 +18,14 @@ import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.unit.dp
+import com.example.care.data.database.entity.CustomerData
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
-fun CareApp() {
+fun CareApp(careViewModel: CareViewModel) {
+    val context = LocalContext.current
     Column(
         modifier = Modifier.fillMaxWidth().padding(32.dp),
         horizontalAlignment = Alignment.CenterHorizontally
@@ -54,5 +58,17 @@ fun CareApp() {
             onValueChange = { address = it },
             label = { Text("Address") }
         )
+
+        Spacer(modifier = Modifier.height(16.dp))
+        Button(onClick = {
+            careViewModel.insertDataToDb(context, CustomerData(
+                name = name,
+                age = age.toInt(),
+                dob = dateState.toString(),
+                address = address
+            ))
+        }) {
+            Text(text = "Submit")
+        }
     }
 }
